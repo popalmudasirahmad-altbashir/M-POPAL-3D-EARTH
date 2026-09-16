@@ -1,0 +1,1942 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#02040b">
+<title>M POPAL EARTH • 360°</title><style>
+:root{
+  --bg:#02040b;
+  --cyan:#00eaff;
+  --blue:#2979ff;
+  --pink:#ff3cac;
+  --violet:#8b5cff;
+  --green:#39ffb0;
+  --gold:#ffd166;
+  --white:#fff;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html,body{
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  background:#02040b;
+  color:#fff;
+  font-family:Arial,Helvetica,sans-serif;
+  touch-action:none;
+}
+
+body{
+  position:fixed;
+  inset:0;
+}
+
+#app{
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 42%,#10234b 0%,#07101f 27%,#02040b 65%,#000 100%);
+}
+
+/* =========================
+   SPACE
+========================= */
+
+.space{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+
+.stars{
+  position:absolute;
+  inset:0;
+  background-image:
+    radial-gradient(circle,#fff 0 1px,transparent 1.5px),
+    radial-gradient(circle,#00eaff 0 1px,transparent 1.5px),
+    radial-gradient(circle,#ff3cac 0 1px,transparent 1.5px);
+  background-size:91px 113px,137px 157px,211px 181px;
+  background-position:20px 10px,50px 70px,90px 20px;
+  opacity:.45;
+}
+
+.aurora{
+  position:absolute;
+  width:80vmax;
+  height:80vmax;
+  left:50%;
+  top:48%;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:
+    radial-gradient(circle,
+      rgba(0,234,255,.16),
+      rgba(139,92,255,.08) 38%,
+      rgba(255,60,172,.05) 52%,
+      transparent 70%);
+  filter:blur(28px);
+  animation:pulse 7s ease-in-out infinite alternate;
+}
+
+@keyframes pulse{
+  from{transform:translate(-50%,-50%) scale(.88)}
+  to{transform:translate(-50%,-50%) scale(1.08)}
+}
+
+/* =========================
+   TOP BAR
+========================= */
+
+.top{
+  position:absolute;
+  z-index:20;
+  top:0;
+  left:0;
+  right:0;
+  height:82px;
+  padding:18px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  pointer-events:none;
+}
+
+.brand{
+  pointer-events:auto;
+  padding:10px 15px;
+  border:1px solid rgba(255,255,255,.55);
+  border-radius:18px;
+  background:rgba(0,0,0,.38);
+  backdrop-filter:blur(14px);
+  box-shadow:
+    0 0 18px rgba(0,234,255,.25),
+    inset 0 0 16px rgba(255,60,172,.06);
+}
+
+.brand b{
+  font-size:15px;
+  letter-spacing:2px;
+}
+
+.brand span{
+  display:block;
+  margin-top:3px;
+  font-size:9px;
+  letter-spacing:3px;
+  opacity:.65;
+}
+
+.menuBtn{
+  pointer-events:auto;
+  width:48px;
+  height:48px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.7);
+  color:white;
+  background:
+    linear-gradient(135deg,
+      rgba(0,234,255,.22),
+      rgba(255,60,172,.18));
+  box-shadow:
+    0 0 18px rgba(0,234,255,.25),
+    0 0 18px rgba(255,60,172,.18);
+  font-size:21px;
+  cursor:pointer;
+}
+
+/* =========================
+   GLOBE AREA
+========================= */
+
+#globe{
+  position:absolute;
+  inset:0;
+  z-index:5;
+  width:100%;
+  height:100%;
+}
+
+canvas{
+  display:block;
+  width:100%;
+  height:100%;
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.hero{
+  position:absolute;
+  z-index:12;
+  left:50%;
+  top:92px;
+  transform:translateX(-50%);
+  text-align:center;
+  pointer-events:none;
+  width:90%;
+}
+
+.hero h1{
+  font-size:clamp(22px,7vw,48px);
+  letter-spacing:5px;
+  text-shadow:
+    0 0 10px rgba(0,234,255,.7),
+    0 0 24px rgba(255,60,172,.3);
+}
+
+.hero p{
+  margin-top:7px;
+  font-size:10px;
+  letter-spacing:4px;
+  opacity:.65;
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+.searchWrap{
+  position:absolute;
+  z-index:20;
+  left:50%;
+  bottom:91px;
+  transform:translateX(-50%);
+  width:min(88%,470px);
+}
+
+.searchBox{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  padding:8px;
+  border:1px solid rgba(255,255,255,.65);
+  border-radius:21px;
+  background:rgba(2,5,14,.72);
+  backdrop-filter:blur(16px);
+  box-shadow:
+    0 0 18px rgba(0,234,255,.16),
+    0 0 22px rgba(255,60,172,.12);
+}
+
+.searchBox input{
+  min-width:0;
+  flex:1;
+  border:0;
+  outline:0;
+  color:#fff;
+  background:transparent;
+  padding:12px 9px;
+  font-size:14px;
+}
+
+.searchBox input::placeholder{
+  color:rgba(255,255,255,.5);
+}
+
+.searchBox button{
+  border:0;
+  border-radius:14px;
+  padding:12px 15px;
+  color:#fff;
+  font-weight:bold;
+  background:linear-gradient(135deg,#00bcd4,#8b5cff,#ff3cac);
+  cursor:pointer;
+}
+
+/* =========================
+   BOTTOM INFO
+========================= */
+
+.bottom{
+  position:absolute;
+  z-index:15;
+  left:50%;
+  bottom:19px;
+  transform:translateX(-50%);
+  width:calc(100% - 32px);
+  max-width:650px;
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  pointer-events:none;
+}
+
+.pill{
+  padding:9px 13px;
+  border:1px solid rgba(255,255,255,.4);
+  border-radius:15px;
+  background:rgba(0,0,0,.4);
+  backdrop-filter:blur(12px);
+  font-size:9px;
+  letter-spacing:1px;
+  opacity:.8;
+}
+
+/* =========================
+   PANELS
+========================= */
+
+.panel{
+  position:absolute;
+  z-index:50;
+  top:80px;
+  right:14px;
+  width:min(88%,370px);
+  max-height:72vh;
+  overflow:auto;
+  padding:18px;
+  border:1px solid rgba(255,255,255,.55);
+  border-radius:25px;
+  background:
+    linear-gradient(145deg,
+      rgba(2,9,22,.94),
+      rgba(19,5,31,.93));
+  backdrop-filter:blur(22px);
+  box-shadow:
+    0 0 24px rgba(0,234,255,.22),
+    0 0 28px rgba(255,60,172,.17);
+  transform:translateX(120%);
+  transition:.35s ease;
+}
+
+.panel.open{
+  transform:translateX(0);
+}
+
+.panel h2{
+  font-size:19px;
+  letter-spacing:2px;
+}
+
+.panel p{
+  margin-top:9px;
+  line-height:1.55;
+  font-size:12px;
+  opacity:.78;
+}
+
+.close{
+  float:right;
+  width:34px;
+  height:34px;
+  border-radius:11px;
+  border:1px solid rgba(255,255,255,.5);
+  background:rgba(255,255,255,.06);
+  color:white;
+  cursor:pointer;
+}
+
+.result{
+  margin-top:10px;
+  padding:12px;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:15px;
+  background:rgba(255,255,255,.045);
+}
+
+.result b{
+  display:block;
+  color:#00eaff;
+}
+
+.result small{
+  display:block;
+  margin-top:4px;
+  opacity:.65;
+}
+
+/* =========================
+   LOADING
+========================= */
+
+.loading{
+  position:absolute;
+  z-index:60;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;
+  pointer-events:none;
+  transition:.4s;
+}
+
+.loading.hide{
+  opacity:0;
+  visibility:hidden;
+}
+
+.loader{
+  width:46px;
+  height:46px;
+  margin:auto;
+  border-radius:50%;
+  border:2px solid rgba(255,255,255,.15);
+  border-top-color:#00eaff;
+  border-right-color:#ff3cac;
+  animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
+
+.loading p{
+  margin-top:12px;
+  font-size:9px;
+  letter-spacing:3px;
+  opacity:.7;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px){
+
+  .top{
+    padding:14px;
+  }
+
+  .hero{
+    top:86px;
+  }
+
+  .hero h1{
+    letter-spacing:3px;
+  }
+
+  .searchWrap{
+    bottom:76px;
+  }
+
+  .bottom{
+    display:none;
+  }
+
+}
+</style></head><body><div id="app">  <div class="space">
+    <div class="stars"></div>
+    <div class="aurora"></div>
+  </div>  <header class="top"><div class="brand">
+  <b>M POPAL TECH</b>
+  <span>EARTH • 360°</span>
+</div>
+
+<button class="menuBtn" id="menuBtn" aria-label="Menu">☰</button>
+
+  </header>  <section class="hero">
+    <h1>EARTH</h1>
+    <p>EXPLORE THE WORLD • 360° INTERACTIVE</p>
+  </section>  <main id="globe"></main>  <div class="loading" id="loading">
+    <div class="loader"></div>
+    <p>LOADING EARTH</p>
+  </div>  <div class="searchWrap">
+    <div class="searchBox">
+      <input
+        id="searchInput"
+        type="search"
+        placeholder="Search country, city, continent..."
+        autocomplete="off">
+      <button id="searchBtn">SEARCH</button>
+    </div>
+  </div>  <div class="bottom">
+    <div class="pill">👆 DRAG • ROTATE</div>
+    <div class="pill">🤏 PINCH • ZOOM</div>
+    <div class="pill">🌍 360°</div>
+  </div>  <aside class="panel" id="menuPanel"><button class="close" id="closeMenu">×</button>
+
+<h2>M POPAL EARTH</h2>
+
+<p>
+  Interactive 3D Earth experience with touch,
+  mouse, search and geographic information.
+</p>
+
+<div class="result">
+  <b>🌍 Continents</b>
+  <small>Asia • Africa • Europe • North America • South America • Oceania • Antarctica</small>
+</div>
+
+<div class="result">
+  <b>🌐 Controls</b>
+  <small>Drag to rotate • Pinch or wheel to zoom</small>
+</div>
+
+<div class="result">
+  <b>✨ M POPAL TECH</b>
+  <small>Futuristic Earth interface</small>
+</div>
+
+  </aside>  <aside class="panel" id="resultsPanel"><button class="close" id="closeResults">×</button>
+
+<h2>SEARCH RESULTS</h2>
+
+<div id="results"></div>
+
+  </aside></div><script type="module">
+
+/* =========================================================
+   THREE.JS
+   Pinned to a known release instead of an unpinned "latest".
+========================================================= */
+
+import * as THREE
+  from "https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js";
+
+
+/* =========================================================
+   BASIC ELEMENTS
+========================================================= */
+
+const globeContainer =
+  document.getElementById("globe");
+
+const loading =
+  document.getElementById("loading");
+
+const menuBtn =
+  document.getElementById("menuBtn");
+
+const menuPanel =
+  document.getElementById("menuPanel");
+
+const closeMenu =
+  document.getElementById("closeMenu");
+
+const searchInput =
+  document.getElementById("searchInput");
+
+const searchBtn =
+  document.getElementById("searchBtn");
+
+const resultsPanel =
+  document.getElementById("resultsPanel");
+
+const closeResults =
+  document.getElementById("closeResults");
+
+const results =
+  document.getElementById("results");
+
+
+/* =========================================================
+   SCENE
+========================================================= */
+
+const scene =
+  new THREE.Scene();
+
+
+/* =========================================================
+   CAMERA
+========================================================= */
+
+const camera =
+  new THREE.PerspectiveCamera(
+    45,
+    window.innerWidth / window.innerHeight,
+    0.1,
+    100
+  );
+
+camera.position.set(
+  0,
+  0,
+  4.2
+);
+
+
+/* =========================================================
+   RENDERER
+========================================================= */
+
+const renderer =
+  new THREE.WebGLRenderer({
+    antialias:true,
+    alpha:true,
+    powerPreference:"high-performance"
+  });
+
+renderer.setPixelRatio(
+  Math.min(window.devicePixelRatio,2)
+);
+
+renderer.setSize(
+  window.innerWidth,
+  window.innerHeight
+);
+
+renderer.outputColorSpace =
+  THREE.SRGBColorSpace;
+
+renderer.toneMapping =
+  THREE.ACESFilmicToneMapping;
+
+renderer.toneMappingExposure =
+  1.15;
+
+globeContainer.appendChild(
+  renderer.domElement
+);
+
+
+/* =========================================================
+   EARTH GROUP
+========================================================= */
+
+const earthGroup =
+  new THREE.Group();
+
+scene.add(earthGroup);
+
+
+/* =========================================================
+   EARTH GEOMETRY
+========================================================= */
+
+const earthGeometry =
+  new THREE.SphereGeometry(
+    1.38,
+    96,
+    96
+  );
+
+
+/* =========================================================
+   PROCEDURAL EARTH SHADER
+   This means the Earth still appears even if the SVG
+   texture fails to load.
+========================================================= */
+
+const earthMaterial =
+  new THREE.ShaderMaterial({
+
+    uniforms:{
+      time:{
+        value:0
+      }
+    },
+
+    vertexShader:`
+
+      varying vec3 vNormal;
+      varying vec3 vPosition;
+
+      void main(){
+
+        vNormal =
+          normalize(
+            normalMatrix *
+            normal
+          );
+
+        vPosition =
+          position;
+
+        gl_Position =
+          projectionMatrix *
+          modelViewMatrix *
+          vec4(position,1.0);
+
+      }
+
+    `,
+
+    fragmentShader:`
+
+      varying vec3 vNormal;
+      varying vec3 vPosition;
+
+      uniform float time;
+
+      void main(){
+
+        vec3 n =
+          normalize(vNormal);
+
+        float latitude =
+          abs(n.y);
+
+        float glow =
+          pow(
+            1.0 -
+            max(dot(n,vec3(0.0,0.0,1.0)),0.0),
+            2.5
+          );
+
+        float gridLat =
+          smoothstep(
+            0.96,
+            1.0,
+            abs(
+              sin(
+                vPosition.y * 15.0
+              )
+            )
+          );
+
+        float gridLon =
+          smoothstep(
+            0.96,
+            1.0,
+            abs(
+              sin(
+                atan(
+                  vPosition.z,
+                  vPosition.x
+                ) * 18.0
+              )
+            )
+          );
+
+        vec3 ocean =
+          vec3(
+            0.008,
+            0.13,
+            0.23
+          );
+
+        vec3 cyan =
+          vec3(
+            0.0,
+            0.75,
+            1.0
+          );
+
+        vec3 violet =
+          vec3(
+            0.35,
+            0.08,
+            0.8
+          );
+
+        vec3 color =
+          mix(
+            ocean,
+            cyan,
+            glow * .55
+          );
+
+        color +=
+          violet *
+          glow *
+          .16;
+
+        color +=
+          vec3(0.7,1.0,1.0) *
+          (gridLat + gridLon) *
+          .12;
+
+        gl_FragColor =
+          vec4(color,1.0);
+
+      }
+
+    `
+
+  });
+
+
+const earth =
+  new THREE.Mesh(
+    earthGeometry,
+    earthMaterial
+  );
+
+earthGroup.add(
+  earth
+);
+
+
+/* =========================================================
+   MAP TEXTURE
+   Try local earth-map.svg.
+========================================================= */
+
+const textureLoader =
+  new THREE.TextureLoader();
+
+textureLoader.load(
+
+  "earth-map.svg",
+
+  texture => {
+
+    texture.colorSpace =
+      THREE.SRGBColorSpace;
+
+    texture.anisotropy =
+      renderer.capabilities.getMaxAnisotropy();
+
+    /*
+      Use the map as a transparent overlay.
+      The procedural Earth remains underneath.
+    */
+
+    const mapMaterial =
+      new THREE.MeshBasicMaterial({
+
+        map:texture,
+
+        transparent:true,
+
+        opacity:.72,
+
+        depthWrite:false
+
+      });
+
+    const mapMesh =
+      new THREE.Mesh(
+        earthGeometry.clone(),
+        mapMaterial
+      );
+
+    /*
+      Slightly larger to avoid z-fighting.
+    */
+
+    mapMesh.scale.setScalar(1.002);
+
+    earthGroup.add(
+      mapMesh
+    );
+
+  },
+
+  undefined,
+
+  error => {
+
+    console.warn(
+      "earth-map.svg could not be loaded. Procedural Earth remains active.",
+      error
+    );
+
+  }
+
+);
+
+
+/* =========================================================
+   ATMOSPHERE
+========================================================= */
+
+const atmosphereGeometry =
+  new THREE.SphereGeometry(
+    1.43,
+    64,
+    64
+  );
+
+const atmosphereMaterial =
+  new THREE.ShaderMaterial({
+
+    transparent:true,
+
+    side:THREE.BackSide,
+
+    blending:
+      THREE.AdditiveBlending,
+
+    vertexShader:`
+
+      varying vec3 vNormal;
+
+      void main(){
+
+        vNormal =
+          normalize(
+            normalMatrix *
+            normal
+          );
+
+        gl_Position =
+          projectionMatrix *
+          modelViewMatrix *
+          vec4(position,1.0);
+
+      }
+
+    `,
+
+    fragmentShader:`
+
+      varying vec3 vNormal;
+
+      void main(){
+
+        float glow =
+          pow(
+            0.75 -
+            dot(
+              vNormal,
+              vec3(0.0,0.0,1.0)
+            ),
+            2.4
+          );
+
+        gl_FragColor =
+          vec4(
+            0.0,
+            0.8,
+            1.0,
+            glow * .55
+          );
+
+      }
+
+    `
+
+  });
+
+
+const atmosphere =
+  new THREE.Mesh(
+    atmosphereGeometry,
+    atmosphereMaterial
+  );
+
+earthGroup.add(
+  atmosphere
+);
+
+
+/* =========================================================
+   EDGE RINGS
+========================================================= */
+
+function createRing(
+  radius,
+  color,
+  opacity
+){
+
+  const geometry =
+    new THREE.RingGeometry(
+      radius,
+      radius + .006,
+      128
+    );
+
+  const material =
+    new THREE.MeshBasicMaterial({
+
+      color,
+
+      transparent:true,
+
+      opacity,
+
+      side:THREE.DoubleSide,
+
+      blending:
+        THREE.AdditiveBlending
+
+    });
+
+  const ring =
+    new THREE.Mesh(
+      geometry,
+      material
+    );
+
+  ring.rotation.x =
+    Math.PI / 2;
+
+  return ring;
+
+}
+
+
+const ring1 =
+  createRing(
+    1.47,
+    0x00eaff,
+    .35
+  );
+
+const ring2 =
+  createRing(
+    1.51,
+    0xff3cac,
+    .18
+  );
+
+earthGroup.add(
+  ring1,
+  ring2
+);
+
+
+/* =========================================================
+   LIGHTS
+========================================================= */
+
+const ambient =
+  new THREE.AmbientLight(
+    0x7ddfff,
+    1.4
+  );
+
+scene.add(
+  ambient
+);
+
+const point =
+  new THREE.PointLight(
+    0xffffff,
+    5,
+    10
+  );
+
+point.position.set(
+  3,
+  2,
+  4
+);
+
+scene.add(
+  point
+);
+
+
+/* =========================================================
+   STARS
+========================================================= */
+
+const starGeometry =
+  new THREE.BufferGeometry();
+
+const starCount =
+  900;
+
+const starPositions =
+  new Float32Array(
+    starCount * 3
+  );
+
+for(
+  let i=0;
+  i<starCount;
+  i++
+){
+
+  const radius =
+    7 +
+    Math.random() * 14;
+
+  const theta =
+    Math.random() *
+    Math.PI * 2;
+
+  const phi =
+    Math.acos(
+      2 * Math.random() - 1
+    );
+
+  starPositions[
+    i*3
+  ] =
+    radius *
+    Math.sin(phi) *
+    Math.cos(theta);
+
+  starPositions[
+    i*3+1
+  ] =
+    radius *
+    Math.cos(phi);
+
+  starPositions[
+    i*3+2
+  ] =
+    radius *
+    Math.sin(phi) *
+    Math.sin(theta);
+
+}
+
+starGeometry.setAttribute(
+  "position",
+  new THREE.BufferAttribute(
+    starPositions,
+    3
+  )
+);
+
+const starMaterial =
+  new THREE.PointsMaterial({
+
+    color:0xffffff,
+
+    size:.018,
+
+    transparent:true,
+
+    opacity:.75,
+
+    sizeAttenuation:true
+
+  });
+
+const stars =
+  new THREE.Points(
+    starGeometry,
+    starMaterial
+  );
+
+scene.add(
+  stars
+);
+
+
+/* =========================================================
+   TOUCH / MOUSE CONTROL
+========================================================= */
+
+let dragging =
+  false;
+
+let previousX =
+  0;
+
+let previousY =
+  0;
+
+let velocityX =
+  0;
+
+let velocityY =
+  0;
+
+let distance =
+  4.2;
+
+
+function startDrag(
+  x,
+  y
+){
+
+  dragging =
+    true;
+
+  previousX =
+    x;
+
+  previousY =
+    y;
+
+  velocityX =
+    0;
+
+  velocityY =
+    0;
+
+}
+
+
+function moveDrag(
+  x,
+  y
+){
+
+  if(!dragging)
+    return;
+
+  const dx =
+    x -
+    previousX;
+
+  const dy =
+    y -
+    previousY;
+
+  earthGroup.rotation.y +=
+    dx * .008;
+
+  earthGroup.rotation.x +=
+    dy * .005;
+
+  earthGroup.rotation.x =
+    Math.max(
+      -1.35,
+      Math.min(
+        1.35,
+        earthGroup.rotation.x
+      )
+    );
+
+  velocityX =
+    dx * .0008;
+
+  velocityY =
+    dy * .0005;
+
+  previousX =
+    x;
+
+  previousY =
+    y;
+
+}
+
+
+function endDrag(){
+
+  dragging =
+    false;
+
+}
+
+
+/* Mouse */
+
+renderer.domElement.addEventListener(
+  "pointerdown",
+  event => {
+
+    renderer.domElement.setPointerCapture(
+      event.pointerId
+    );
+
+    startDrag(
+      event.clientX,
+      event.clientY
+    );
+
+  }
+);
+
+
+renderer.domElement.addEventListener(
+  "pointermove",
+  event => {
+
+    moveDrag(
+      event.clientX,
+      event.clientY
+    );
+
+  }
+);
+
+
+renderer.domElement.addEventListener(
+  "pointerup",
+  endDrag
+);
+
+
+renderer.domElement.addEventListener(
+  "pointercancel",
+  endDrag
+);
+
+
+/* Wheel */
+
+renderer.domElement.addEventListener(
+  "wheel",
+  event => {
+
+    event.preventDefault();
+
+    distance +=
+      event.deltaY *
+      .0025;
+
+    distance =
+      Math.max(
+        2.6,
+        Math.min(
+          6.5,
+          distance
+        )
+      );
+
+  },
+  {passive:false}
+);
+
+
+/* Touch pinch */
+
+let touchStartDistance =
+  null;
+
+renderer.domElement.addEventListener(
+  "touchstart",
+  event => {
+
+    if(
+      event.touches.length === 2
+    ){
+
+      const dx =
+        event.touches[0].clientX -
+        event.touches[1].clientX;
+
+      const dy =
+        event.touches[0].clientY -
+        event.touches[1].clientY;
+
+      touchStartDistance =
+        Math.hypot(
+          dx,
+          dy
+        );
+
+    }
+
+  },
+  {passive:false}
+);
+
+
+renderer.domElement.addEventListener(
+  "touchmove",
+  event => {
+
+    if(
+      event.touches.length === 2 &&
+      touchStartDistance
+    ){
+
+      event.preventDefault();
+
+      const dx =
+        event.touches[0].clientX -
+        event.touches[1].clientX;
+
+      const dy =
+        event.touches[0].clientY -
+        event.touches[1].clientY;
+
+      const current =
+        Math.hypot(
+          dx,
+          dy
+        );
+
+      const difference =
+        current -
+        touchStartDistance;
+
+      distance -=
+        difference *
+        .006;
+
+      distance =
+        Math.max(
+          2.6,
+          Math.min(
+            6.5,
+            distance
+          )
+        );
+
+      touchStartDistance =
+        current;
+
+    }
+
+  },
+  {passive:false}
+);
+
+
+renderer.domElement.addEventListener(
+  "touchend",
+  () => {
+
+    touchStartDistance =
+      null;
+
+  }
+);
+
+
+/* =========================================================
+   MENU
+========================================================= */
+
+menuBtn.addEventListener(
+  "click",
+  () => {
+
+    menuPanel.classList.toggle(
+      "open"
+    );
+
+  }
+);
+
+closeMenu.addEventListener(
+  "click",
+  () => {
+
+    menuPanel.classList.remove(
+      "open"
+    );
+
+  }
+);
+
+closeResults.addEventListener(
+  "click",
+  () => {
+
+    resultsPanel.classList.remove(
+      "open"
+    );
+
+  }
+);
+
+
+/* =========================================================
+   SEARCH DATA
+========================================================= */
+
+const localData = [
+
+  {
+    name:"Asia",
+    type:"Continent",
+    info:"The largest continent by area and population."
+  },
+
+  {
+    name:"Africa",
+    type:"Continent",
+    info:"A continent known for diverse landscapes and cultures."
+  },
+
+  {
+    name:"Europe",
+    type:"Continent",
+    info:"A continent with many historic cities and cultures."
+  },
+
+  {
+    name:"North America",
+    type:"Continent",
+    info:"A continent containing Canada, the United States, Mexico and more."
+  },
+
+  {
+    name:"South America",
+    type:"Continent",
+    info:"Home to the Amazon rainforest and Andes Mountains."
+  },
+
+  {
+    name:"Oceania",
+    type:"Continent",
+    info:"Includes Australia and many Pacific islands."
+  },
+
+  {
+    name:"Antarctica",
+    type:"Continent",
+    info:"The coldest continent surrounding the South Pole."
+  },
+
+  {
+    name:"Afghanistan",
+    type:"Country",
+    info:"Capital: Kabul."
+  },
+
+  {
+    name:"Japan",
+    type:"Country",
+    info:"Capital: Tokyo."
+  },
+
+  {
+    name:"China",
+    type:"Country",
+    info:"Capital: Beijing."
+  },
+
+  {
+    name:"India",
+    type:"Country",
+    info:"Capital: New Delhi."
+  },
+
+  {
+    name:"United States",
+    type:"Country",
+    info:"Capital: Washington, D.C."
+  },
+
+  {
+    name:"France",
+    type:"Country",
+    info:"Capital: Paris."
+  },
+
+  {
+    name:"Germany",
+    type:"Country",
+    info:"Capital: Berlin."
+  },
+
+  {
+    name:"Brazil",
+    type:"Country",
+    info:"Capital: Brasília."
+  },
+
+  {
+    name:"Australia",
+    type:"Country",
+    info:"Capital: Canberra."
+  },
+
+  {
+    name:"Kabul",
+    type:"City",
+    info:"Capital city of Afghanistan."
+  },
+
+  {
+    name:"Tokyo",
+    type:"City",
+    info:"Capital city of Japan."
+  },
+
+  {
+    name:"Dubai",
+    type:"City",
+    info:"Major city in the United Arab Emirates."
+  },
+
+  {
+    name:"London",
+    type:"City",
+    info:"Capital city of the United Kingdom."
+  },
+
+  {
+    name:"Paris",
+    type:"City",
+    info:"Capital city of France."
+  },
+
+  {
+    name:"New York City",
+    type:"City",
+    info:"Major city in the United States."
+  },
+
+  {
+    name:"Sydney",
+    type:"City",
+    info:"Major city in Australia."
+  },
+
+  {
+    name:"Mount Everest",
+    type:"Landmark",
+    info:"The world's highest mountain above sea level."
+  },
+
+  {
+    name:"Burj Khalifa",
+    type:"Landmark",
+    info:"Famous skyscraper in Dubai."
+  },
+
+  {
+    name:"Taj Mahal",
+    type:"Landmark",
+    info:"Famous marble mausoleum in India."
+  },
+
+  {
+    name:"Eiffel Tower",
+    type:"Landmark",
+    info:"Famous landmark in Paris."
+  },
+
+  {
+    name:"Pyramids of Giza",
+    type:"Landmark",
+    info:"Ancient pyramids near Cairo."
+  },
+
+  {
+    name:"Great Wall of China",
+    type:"Landmark",
+    info:"Historic defensive network in China."
+  },
+
+  {
+    name:"Statue of Liberty",
+    type:"Landmark",
+    info:"Famous monument in New York Harbor."
+  },
+
+  {
+    name:"Sydney Opera House",
+    type:"Landmark",
+    info:"World-famous performing arts building in Sydney."
+  }
+
+];
+
+
+/* =========================================================
+   CONNECT earth-data.js IF AVAILABLE
+========================================================= */
+
+if(
+  window.M_POPAL_EARTH_DATA &&
+  Array.isArray(
+    window.M_POPAL_EARTH_DATA.earthSearchData
+  )
+){
+
+  /*
+    The external data file can later expand
+    the search database without changing this page.
+  */
+
+  window.M_POPAL_EARTH_DATA
+    .earthSearchData
+    .forEach(
+      item => {
+
+        if(
+          item &&
+          item.name
+        ){
+
+          localData.push({
+
+            name:item.name,
+
+            type:item.type ||
+                 "Location",
+
+            info:
+              item.description ||
+              item.capital ||
+              item.country ||
+              ""
+
+          });
+
+        }
+
+      }
+    );
+
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+function performSearch(){
+
+  const query =
+    searchInput.value
+      .trim()
+      .toLowerCase();
+
+  results.innerHTML =
+    "";
+
+  if(!query){
+
+    results.innerHTML =
+      `<div class="result">
+        <b>🌍 Explore Earth</b>
+        <small>Type a country, city, continent or landmark.</small>
+      </div>`;
+
+    resultsPanel.classList.add(
+      "open"
+    );
+
+    return;
+
+  }
+
+
+  const matches =
+    localData
+      .filter(
+        item => {
+
+          const text =
+            (
+              item.name +
+              " " +
+              item.type +
+              " " +
+              item.info
+            )
+            .toLowerCase();
+
+          return text.includes(
+            query
+          );
+
+        }
+      )
+      .slice(0,12);
+
+
+  if(
+    matches.length === 0
+  ){
+
+    results.innerHTML =
+      `<div class="result">
+        <b>Nothing found</b>
+        <small>Try another country, city or landmark.</small>
+      </div>`;
+
+  }else{
+
+    matches.forEach(
+      item => {
+
+        const card =
+          document.createElement(
+            "div"
+          );
+
+        card.className =
+          "result";
+
+        card.innerHTML =
+          `<b>${escapeHtml(item.name)}</b>
+           <small>
+             ${escapeHtml(item.type)}
+             <br>
+             ${escapeHtml(item.info)}
+           </small>`;
+
+        results.appendChild(
+          card
+        );
+
+      }
+    );
+
+  }
+
+  resultsPanel.classList.add(
+    "open"
+  );
+
+}
+
+
+function escapeHtml(
+  text
+){
+
+  return String(text)
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+    .replace(
+      /</g,
+      "&lt;"
+    )
+    .replace(
+      />/g,
+      "&gt;"
+    )
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+    .replace(
+      /'/g,
+      "&#039;"
+    );
+
+}
+
+
+searchBtn.addEventListener(
+  "click",
+  performSearch
+);
+
+
+searchInput.addEventListener(
+  "keydown",
+  event => {
+
+    if(
+      event.key === "Enter"
+    ){
+
+      performSearch();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   RESIZE
+========================================================= */
+
+function resize(){
+
+  camera.aspect =
+    window.innerWidth /
+    window.innerHeight;
+
+  camera.updateProjectionMatrix();
+
+  renderer.setSize(
+    window.innerWidth,
+    window.innerHeight
+  );
+
+  renderer.setPixelRatio(
+    Math.min(
+      window.devicePixelRatio,
+      2
+    )
+  );
+
+}
+
+window.addEventListener(
+  "resize",
+  resize
+);
+
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+const clock =
+  new THREE.Clock();
+
+
+function animate(){
+
+  requestAnimationFrame(
+    animate
+  );
+
+  const elapsed =
+    clock.getElapsedTime();
+
+  earthMaterial
+    .uniforms
+    .time
+    .value =
+    elapsed;
+
+
+  /*
+    Gentle automatic movement.
+    Stops while the user is dragging.
+  */
+
+  if(!dragging){
+
+    earthGroup.rotation.y +=
+      .00055;
+
+    earthGroup.rotation.y +=
+      velocityX;
+
+    earthGroup.rotation.x +=
+      velocityY;
+
+    velocityX *=
+      .965;
+
+    velocityY *=
+      .965;
+
+  }
+
+
+  camera.position.z =
+    THREE.MathUtils.lerp(
+      camera.position.z,
+      distance,
+      .08
+    );
+
+
+  stars.rotation.y +=
+    .00008;
+
+
+  renderer.render(
+    scene,
+    camera
+  );
+
+}
+
+
+animate();
+
+
+/* =========================================================
+   START
+========================================================= */
+
+setTimeout(
+  () => {
+
+    loading.classList.add(
+      "hide"
+    );
+
+  },
+  850
+);
+
+
+/* =========================================================
+   WEBGL ERROR HANDLING
+========================================================= */
+
+if(
+  !renderer.capabilities.isWebGL2
+){
+
+  console.warn(
+    "WebGL2 is unavailable. Three.js may use fallback browser support."
+  );
+
+}
+
+</script><!--
+  M POPAL TECH
+  M POPAL EARTH 360°
+  Three.js powers the interactive 3D Earth.
+--></body>
+</html>
